@@ -31,7 +31,7 @@ class EventServiceProvider extends ServiceProvider
             ]);
             $event->menu->add([
                 'text' => 'Documents',
-                'url' => 'admin/',
+                'url' => 'documentos/',
                 'icon' => 'nav-icon fas fa-file-alt'
             ]);
 

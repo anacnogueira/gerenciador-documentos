@@ -8,3 +8,6 @@ Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginFor
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+Route::resource('/documentos', App\Http\Controllers\DocumentController::class);
+

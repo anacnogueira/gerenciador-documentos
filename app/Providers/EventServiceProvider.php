@@ -35,6 +35,8 @@ class EventServiceProvider extends ServiceProvider
                 'icon' => 'nav-icon fas fa-file-alt'
             ]);
 
+
+
         });
     }
 }

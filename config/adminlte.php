@@ -63,8 +63,8 @@ return [
     |
     */
 
-    'logo' => null,
-    'logo_img' => 'img/logo-midia-simples.webp',
+    'logo' => 'Midia Simples',
+    'logo_img' => 'img/tag.webp',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -311,7 +311,7 @@ return [
         ],
 
         // Sidebar items:
-        [
+        /*[
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
@@ -391,7 +391,7 @@ return [
             'text' => 'information',
             'icon_color' => 'cyan',
             'url' => '#',
-        ],
+        ],*/
     ],
 
     /*

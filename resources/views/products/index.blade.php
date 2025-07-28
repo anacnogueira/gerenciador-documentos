@@ -75,7 +75,7 @@
 
 
 @push('js')
-<script  type="text/javascript" src="{{ asset('js/utils/deleteConfirm.js') }}"></script>
+    <script  type="text/javascript" src="{{ asset('js/utils/deleteConfirm.js') }}"></script>
     <script  type="text/javascript" src="{{ asset('js/utils/translateDatatable.js') }}"></script>
     <script type="text/javascript" defer>
         translate("#table-product");

@@ -29,7 +29,7 @@ class StoreUpdateProductRequest extends FormRequest
             'memory' => ['required'],
             'disk' => ['required'],
             'price' => ['required'],
-            'proce_string' => ['required'],
+            'price_string' => ['required'],
 
         ];
     }

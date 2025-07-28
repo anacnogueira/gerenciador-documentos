@@ -16,3 +16,7 @@
 
 <a href="{{ route('produtos.index') }}" class="btn btn-warning"><i class="fa fa-times"></i> Cancelar</a>
 <x-adminlte-button type="submit" label="Salvar" theme="success" icon="fas fa-check"/>
+
+@push('js')
+    <script  type="text/javascript" src="{{ asset('js/utils/priceMask.js') }}"></script>
+@endpush

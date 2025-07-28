@@ -6,6 +6,7 @@
     <h1>Novo Produto</h1>
 @stop
 
+@section('plugins.InputMask', true)
 
 @section('content')
     <div class="row">

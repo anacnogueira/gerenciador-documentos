@@ -53,4 +53,13 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return $product->update($data);
     }
+
+    /**
+     * Delete a Product
+     * @param object $product
+     */
+    public function destroyProduct(Product $product)
+    {
+        return $product->delete();
+    }
 }

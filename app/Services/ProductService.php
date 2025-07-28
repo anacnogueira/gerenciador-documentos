@@ -65,4 +65,22 @@ class ProductService
         return response()->json(['message' => 'Product Updated'], 200);
     }
 
+    /**
+     * Delete a product
+     * @param int $id
+     * @return json response
+    */
+    public function destroyProduct(int $id)
+    {
+        $product = $this->productRepository->getProductById($id);
+
+        if (!$product) {
+            return response()->json(['message' => 'Product Not Found'], 404);
+        }
+
+        $this->productRepository->destroyProduct($product);
+
+        return response()->json(['message' => 'Product Deleted'], 200);
+    }
+
 }

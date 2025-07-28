@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 confirmButtonText: "Excluir",
                 cancelButtonText: "Cancelar",
             }).then((result) => {
-                if (result.isConfirmed) {
+                if (result.value) {
                     event.target.submit();
                 }
             });

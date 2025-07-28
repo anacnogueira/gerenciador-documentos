@@ -83,6 +83,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = $this->productService->destroyProduct($id);
+
+        return redirect()->route('produtos.index');
     }
 }

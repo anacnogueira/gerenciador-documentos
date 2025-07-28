@@ -29,6 +29,12 @@ class EventServiceProvider extends ServiceProvider
                 'header'=> 'main_navigation',
                 'classes' => 'text-bold text-center',
             ]);
+
+            $event->menu->add([
+                'text' => 'Produtos',
+                'url' => 'produtos/',
+                'icon' => 'nav-icon fas fa-laptop'
+            ]);
             $event->menu->add([
                 'text' => 'Documents',
                 'url' => 'documentos/',

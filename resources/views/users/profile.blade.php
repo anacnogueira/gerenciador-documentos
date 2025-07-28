@@ -6,7 +6,6 @@
     <h1>Editar Perfil Usuário</h1>
 @stop
 
-
 @section('content')
     <div class="row">
         <div class="col-md-12">

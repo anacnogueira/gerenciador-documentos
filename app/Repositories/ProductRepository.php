@@ -32,4 +32,14 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return $this->entity->create($data);
     }
+
+     /**
+     * Select Product by ID
+     * @param int $id
+     * @return object
+     */
+    public function getProductById($id)
+    {
+        return $this->entity->find($id);
+    }
 }

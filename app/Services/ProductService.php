@@ -36,4 +36,14 @@ class ProductService
         return $product;
     }
 
+    /**
+     * Get Product by ID
+     * @param int $id
+     * @return object
+    */
+    public function getProductById(int $id)
+    {
+        return $this->productRepository->getProductById($id);
+    }
+
 }

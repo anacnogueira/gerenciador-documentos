@@ -51,7 +51,9 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = $this->productService->getProductById($id);
+
+        return view('products.show', compact('product'));
     }
 
     /**

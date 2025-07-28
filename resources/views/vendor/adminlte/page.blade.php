@@ -6,6 +6,7 @@
 @section('adminlte_css')
     @stack('css')
     @yield('css')
+    <link rel="stylesheet" href="{{ asset('css/customized.css') }}">
 @stop
 
 @section('classes_body', $layoutHelper->makeBodyClasses())

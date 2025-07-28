@@ -42,4 +42,15 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return $this->entity->find($id);
     }
+
+    /**
+     * Update data of Product
+     * @param object $product
+     * @param array $data
+     * @return object
+     */
+    public function updateProduct(Product $product, array $data)
+    {
+        return $product->update($data);
+    }
 }

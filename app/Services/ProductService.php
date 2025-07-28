@@ -46,4 +46,23 @@ class ProductService
         return $this->productRepository->getProductById($id);
     }
 
+    /**
+     * Update a product
+     * @param int $id
+     * @param arrray $data
+     * @return json response
+    */
+    public function updateProduct(int $id, array $data)
+    {
+
+        $product = $this->productRepository->getProductById($id);
+
+        if (!$product) {
+            return response()->json(['message' => 'Product Not Found'], 404);
+        }
+
+        $this->productRepository->updateProduct($product, $data);
+        return response()->json(['message' => 'Product Updated'], 200);
+    }
+
 }

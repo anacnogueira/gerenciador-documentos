@@ -12,6 +12,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile/username', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
     Route::put('/profile/username', [App\Http\Controllers\UserController::class, 'update'])->name('profile.update');
 
+    Route::resource('/produtos', App\Http\Controllers\ProductController::class);
     Route::resource('/documentos', App\Http\Controllers\DocumentController::class);
 });
 

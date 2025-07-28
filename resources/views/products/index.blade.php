@@ -19,6 +19,7 @@
             'Marca',
             'Modelo',
             'Número de Série',
+            'Preço',
             ['label' => 'Ações', 'no-export' => true, 'width' => 5],
         ];
 
@@ -28,7 +29,8 @@
                 $product->brand,
                 $product->model,
                 $product->serial_number,
-                '<nobr><a href="'. route('productos.edit', $product->id).'" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
+                $product->price,
+                '<nobr><a href="'. route('produtos.edit', $product->id).'" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
                 <i class="fa fa-lg fa-fw fa-pen"></i></a>
                 <form action="'.route('produtos.destroy', $product->id) .'" method="POST" class="frm-delete" style="display: inline">
                     <input type="hidden" name="_token" value="'.csrf_token().'">

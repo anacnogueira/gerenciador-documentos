@@ -22,4 +22,14 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return $this->entity->all();
     }
+
+    /**
+     * Create a new product
+     * @param array $data
+     * @return object
+     */
+    public function createProduct(array $data)
+    {
+        return $this->entity->create($data);
+    }
 }

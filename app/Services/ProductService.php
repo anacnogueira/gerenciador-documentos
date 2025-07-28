@@ -22,4 +22,18 @@ class ProductService
     {
         return $this->productRepository->getAllProducts();
     }
+
+    /**
+     * Create a new product
+     * @param array $data
+     * @return object
+    */
+    public function makeProduct(array $data)
+    {
+
+        $product = $this->productRepository->createProduct($data);
+
+        return $product;
+    }
+
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Services\ProductService;
 use App\Http\Requests\StoreUpdateProductRequest;
 
@@ -40,7 +39,11 @@ class ProductController extends Controller
      */
     public function store(StoreUpdateProductRequest $request)
     {
-        //
+        $data = $request->all();
+
+        $product = $this->productService->makeProduct($data);
+
+        return redirect()->route('produtos.index');
     }
 
     /**

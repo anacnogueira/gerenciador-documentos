@@ -4,7 +4,9 @@
 
 <x-adminlte-input name="model" label="Modelo:*" value="{{ $product ? $product->model : ''}}" enable-old-support/>
 
-<x-adminlte-input name="processor" label="Procesador:*" value="{{ $product ? $product->processor : ''}}" enable-old-support/>
+<x-adminlte-input name="serial_number" label="Número de série:*" value="{{ $product ? $product->serial_number : ''}}" enable-old-support/>
+
+<x-adminlte-input name="processor" label="Processador:*" value="{{ $product ? $product->processor : ''}}" enable-old-support/>
 
 <x-adminlte-input name="memory" label="Memória:*" value="{{ $product ? $product->memory : ''}}" enable-old-support/>
 

@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'role',
         'document',
+        'product_id'
     ];
 
     /**
@@ -46,6 +47,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function product()
+    {
+        return $this->hasOne(Product::class);
     }
 
     public function adminlte_profile_url()

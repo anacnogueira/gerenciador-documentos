@@ -28,6 +28,12 @@
 
                         <x-adminlte-input name="document" label="Documento:*" value="{{ $user->document ?? ''}}" enable-old-support/>
 
+                        <x-adminlte-select name="product_id" label="Produto:*" enable-old-support>
+                            @foreach($products as $product)
+                                <option value="{{ $product->id }}" {{ isset($user->product_id) && $product->id == $user->product_id ? "selected" : "" }}>{{ $product->brand . ' - ' . $product->model }}</option>
+                            @endforeach
+                        </x-adminlte-select>
+
                         <x-adminlte-button type="submit" label="Salvar" theme="success" icon="fas fa-check"/>
                     </form>
                 </div>

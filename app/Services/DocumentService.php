@@ -70,16 +70,7 @@ class DocumentService
         }
 
         if(!empty($newFile)) {
-            //Delete Old file
-            $oldFile = $document->file;
-            $oldFileName = str_replace("documents/", "", $oldFile);
-            $storeFileService = new StoreFileService(
-                $oldFile,
-                "documents",
-                $oldFileName
-            );
-            $storeFileService->delete();
-
+            $this->deleteFileDocument($document->file);
 
             $pathFile = $this->uploadDocument($data["name"], $newFile);
             $document->update([
@@ -87,8 +78,8 @@ class DocumentService
             ]);
         }
 
-        //$this->documentRepository->updateDocument($document, $data);
-        //return response()->json(['message' => 'Document Updated'], 200);
+        $this->documentRepository->updateDocument($document, $data);
+        return response()->json(['message' => 'Document Updated'], 200);
     }
 
     /**
@@ -103,6 +94,8 @@ class DocumentService
         if (!$document) {
             return response()->json(['message' => 'Document Not Found'], 404);
         }
+
+        $this->deleteFileDocument($document->file);
 
         $this->documentRepository->destroyDocument($document);
 
@@ -121,6 +114,17 @@ class DocumentService
         $pathFile = $storeFileService->upload();
 
         return $pathFile;
+    }
+
+    private function deleteFileDocument($file)
+    {
+        $fileName = str_replace("documents/", "", $file);
+        $storeFileService = new StoreFileService(
+            $file,
+            "documents",
+            $fileName
+        );
+        $storeFileService->delete();
     }
 
 }

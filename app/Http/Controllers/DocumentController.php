@@ -89,6 +89,8 @@ class DocumentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $document = $this->documentService->destroyDocument($id);
+
+        return redirect()->route('documentos.index');
     }
 }

@@ -19,7 +19,6 @@ class UserController extends Controller
         $this->productService = $productService;
     }
 
-
     public function profile()
     {
         $user = Auth::user();

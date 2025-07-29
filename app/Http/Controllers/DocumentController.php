@@ -3,15 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Services\DocumentService;
 
 class DocumentController extends Controller
 {
+    protected $documentService;
+
+    public function __construct(DocumentService $documentService)
+    {
+        $this->documentService = $documentService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $userId = Auth::id();
+
+        $documents = $this->documentService->getAllDocumentsByUser($userId);
+
+        return view('documents.index', compact('documents'));
     }
 
     /**

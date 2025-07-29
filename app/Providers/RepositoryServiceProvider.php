@@ -7,6 +7,8 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\UserRepository;
 use App\Repositories\Contracts\ProductRepositoryInterface;
 use App\Repositories\ProductRepository;
+use App\Repositories\Contracts\DocumentRepositoryInterface;
+use App\Repositories\DocumentRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             ProductRepositoryInterface::class,
             ProductRepository::class,
+        );
+
+        $this->app->bind(
+            DocumentRepositoryInterface::class,
+            DocumentRepository::class,
         );
     }
 

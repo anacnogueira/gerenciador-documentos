@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\DocumentService;
+use App\Http\Requests\StoreUpdateDocumentRequest;
 
 class DocumentController extends Controller
 {
@@ -32,13 +32,15 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        //
+        $document = null;
+
+        return view('documents.create', compact('document'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUpdateDocumentRequest $request)
     {
         //
     }
@@ -62,7 +64,7 @@ class DocumentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateDocumentRequest $request, string $id)
     {
         //
     }

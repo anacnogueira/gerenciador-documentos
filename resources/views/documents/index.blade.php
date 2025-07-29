@@ -3,7 +3,7 @@
 @section('title', 'Listar Documents')
 
 @section('content_header')
-    <h1>Produtos</h1>
+    <h1>Documentos</h1>
 @stop
 
 @section('plugins.Datatables', true)

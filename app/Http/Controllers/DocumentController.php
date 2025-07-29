@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Services\DocumentService;
 use App\Http\Requests\StoreUpdateDocumentRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 
 class DocumentController extends Controller
 {
@@ -55,7 +57,9 @@ class DocumentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $document = $this->documentService->getDocumentById($id);
+
+        return view('documents.show', compact('document'));
     }
 
     /**

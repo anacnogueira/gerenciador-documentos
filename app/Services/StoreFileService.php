@@ -1,6 +1,8 @@
 <?php
 namespace App\Services;
 
+use Illuminate\Support\Facades\Storage;
+
 class StoreFileService
 {
     protected $uploadedFile;
@@ -19,6 +21,15 @@ class StoreFileService
         $path = $this->storeFile();
 
         return $path;
+    }
+
+    public function delete()
+    {
+        $fullPath = $this->basePath . "/" . $this->fileName;
+        $fileExists = Storage::disk('public')->exists($fullPath);
+        if ($fileExists) {
+            Storage::disk('public')->delete($fullPath);
+        }
     }
 
     private function storeFile()

@@ -23,7 +23,7 @@ class StoreUpdateDocumentRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'file' => ['required', 'file', 'mimes:odt,docx,doc,pdf', 'max:20248'],
+            'file' => ['file', 'mimes:odt,docx,doc,pdf', 'max:20248'],
         ];
     }
 

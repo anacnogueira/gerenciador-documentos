@@ -34,15 +34,8 @@ class DocumentService
 
         $document = $this->documentRepository->createDocument($data);
 
-        $fileName = Str::kebab($document->name)."-".date('dmYHis');
-
         if($file) {
-            $storeFileService = new StoreFileService(
-                $file,
-                "documents",
-                $fileName
-            );
-            $pathFile = $storeFileService->upload();
+            $pathFile = $this->uploadDocument($document->name, $file);
             $document->update([
                 "file" => $pathFile,
             ]);
@@ -67,7 +60,7 @@ class DocumentService
      * @param arrray $data
      * @return json response
     */
-    public function updateDocument(int $id, array $data)
+    public function updateDocument(int $id, array $data, $newFile)
     {
 
         $document = $this->documentRepository->getDocumentById($id);
@@ -76,8 +69,26 @@ class DocumentService
             return response()->json(['message' => 'Document Not Found'], 404);
         }
 
-        $this->documentRepository->updateDocument($document, $data);
-        return response()->json(['message' => 'Document Updated'], 200);
+        if(!empty($newFile)) {
+            //Delete Old file
+            $oldFile = $document->file;
+            $oldFileName = str_replace("documents/", "", $oldFile);
+            $storeFileService = new StoreFileService(
+                $oldFile,
+                "documents",
+                $oldFileName
+            );
+            $storeFileService->delete();
+
+
+            $pathFile = $this->uploadDocument($data["name"], $newFile);
+            $document->update([
+                "file" => $pathFile,
+            ]);
+        }
+
+        //$this->documentRepository->updateDocument($document, $data);
+        //return response()->json(['message' => 'Document Updated'], 200);
     }
 
     /**
@@ -96,6 +107,20 @@ class DocumentService
         $this->documentRepository->destroyDocument($document);
 
         return response()->json(['message' => 'Document Deleted'], 200);
+    }
+
+    private function uploadDocument($name, $file)
+    {
+        $fileName = Str::kebab($name)."-".date('dmYHis');
+
+        $storeFileService = new StoreFileService(
+            $file,
+            "documents",
+            $fileName
+        );
+        $pathFile = $storeFileService->upload();
+
+        return $pathFile;
     }
 
 }

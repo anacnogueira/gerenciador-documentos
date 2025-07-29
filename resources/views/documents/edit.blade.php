@@ -14,7 +14,7 @@
             <div class="card card-primary card-outline">
                 <div class="card-body">
                     <p>Os campos com * são obrigatórios</p>
-                    <form method="POST" action="{{ route('documentos.update', $document->id) }}">
+                    <form method="POST" action="{{ route('documentos.update', $document->id) }}" enctype="multipart/form-data">
                         @method('PUT')
                         @include('documents.partials.form')
                     </form>

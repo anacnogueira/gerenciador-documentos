@@ -77,7 +77,11 @@ class DocumentController extends Controller
      */
     public function update(StoreUpdateDocumentRequest $request, string $id)
     {
-        //
+        $data = $request->all();
+
+        $document = $this->documentService->updateDocument($id, $data, $request->file("file"));
+
+        return redirect()->route('documentos.index');
     }
 
     /**

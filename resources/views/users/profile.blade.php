@@ -30,7 +30,7 @@
 
                         <x-adminlte-select name="product_id" label="Produto:*" enable-old-support>
                             @foreach($products as $product)
-                                <option value="{{ $product->id }}" {{ isset($user->product_id) && $product->id == $user->product_id ? "selected" : "" }}>{{ $product->brand . ' - ' . $product->model }}</option>
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
                             @endforeach
                         </x-adminlte-select>
 

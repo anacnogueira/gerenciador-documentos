@@ -10,6 +10,10 @@
     </x-slot>
 </x-adminlte-input-file>
 
+@if (!empty($document->file))
+    <p></p><a href="{{ asset('storage/'.$document->file) }}" title="Abrir Arquivo">{{ str_replace("documents/","", $document->file) }}</a></p>
+@endif
+
 
 <a href="{{ route('documentos.index') }}" class="btn btn-warning"><i class="fa fa-times"></i> Cancelar</a>
 <x-adminlte-button type="submit" label="Salvar" theme="success" icon="fas fa-check"/>

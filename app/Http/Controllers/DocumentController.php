@@ -67,7 +67,9 @@ class DocumentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $document = $this->documentService->getDocumentById($id);
+
+        return view('documents.edit', compact('document'));
     }
 
     /**

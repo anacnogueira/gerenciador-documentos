@@ -25,7 +25,7 @@
             $data[$key] = [
                 $document->id,
                 $document->name,
-                $document->file,
+                str_replace("documents/","",$document->file),
                 '<nobr><a href="'. route('documentos.edit', $document->id).'" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
                 <i class="fa fa-lg fa-fw fa-pen"></i></a>
                 <form action="'.route('documentos.destroy', $document->id) .'" method="POST" class="frm-delete" style="display: inline">

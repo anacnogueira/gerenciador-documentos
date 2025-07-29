@@ -42,7 +42,12 @@ class DocumentController extends Controller
      */
     public function store(StoreUpdateDocumentRequest $request)
     {
-        //
+        $data = $request->all();
+        $data["user_id"] = Auth::id();
+
+        $document = $this->documentService->makeDocument($data, $request->file("file"));
+
+        return redirect()->route('documentos.index');
     }
 
     /**

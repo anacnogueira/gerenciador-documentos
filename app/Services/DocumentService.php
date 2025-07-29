@@ -3,7 +3,8 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\DocumentRepositoryInterface;
-
+use App\Services\StoreFileService;
+use Illuminate\Support\Str;
 
 class DocumentService
 {
@@ -28,10 +29,24 @@ class DocumentService
      * @param array $data
      * @return object
     */
-    public function makeDocument(array $data)
+    public function makeDocument(array $data, $file)
     {
 
         $document = $this->documentRepository->createDocument($data);
+
+        $fileName = Str::kebab($document->name)."-".date('dmYHis');
+
+        if($file) {
+            $storeFileService = new StoreFileService(
+                $file,
+                "documents",
+                $fileName
+            );
+            $pathFile = $storeFileService->upload();
+            $document->update([
+                "file" => $pathFile,
+            ]);
+        }
 
         return $document;
     }

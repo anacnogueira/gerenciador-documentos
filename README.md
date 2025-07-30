@@ -1,61 +1,92 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gerenciador de Documentos
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+Este projeto é um gerenciador de documentos fácil de usar, desenvolvido com **Laravel 12** e **Laravel Sail**. Ele oferece funcionalidades completas para o gerenciamento de usuários, produtos e documentos, incluindo operações de CRUD (Criar, Ler, Atualizar, Deletar) e download de arquivos.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Funcionalidades
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   **Cadastro de Usuário**: Permite que novos usuários se registrem na plataforma.
+-   **Autenticação de Usuário**: Sistema completo de login e logout para acesso seguro.
+-   **Gerenciamento de Produtos**:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    -   Visualizar uma lista de produtos.
+    -   Adicionar novos produtos.
+    -   Editar informações de produtos existentes.
+    -   Remover produtos.
 
-## Learning Laravel
+-   **Gerenciamento de Documentos**:
+    -   Visualizar uma lista de documentos do usuário.
+    -   Adicionar novos documentos.
+    -   Editar informações de documentos existentes.
+    -   Remover documentos.
+    -   Baixar documentos.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Requisitos
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   **Docker** e **Docker Compose**: Essenciais para rodar o Laravel Sail.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Instalação e Configuração
 
-## Laravel Sponsors
+Siga os passos abaixo para configurar e executar o projeto em sua máquina local:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1.  **Clone o Repositório:**
 
-### Premium Partners
+    ```bash
+    git clone https://github.com/anacnogueira/gerenciador-documentos.git
+    cd gerenciador-documentos
+    ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+2.  **Copie o Arquivo de Variáveis de Ambiente:**
 
-## Contributing
+    ```bash
+    cp .env.example .env
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3.  **Instale as Dependências do Composer com Sail:**
 
-## Code of Conduct
+    ```bash
+    sail composer install
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4.  **Gere a Chave da Aplicação:**
 
-## Security Vulnerabilities
+    ```bash
+    sail artisan key:generate
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5.  **Configure o Banco de Dados:**
 
-## License
+    Certifique-se de que as configurações do banco de dados no arquivo `.env` estejam corretas. Por padrão, o Sail configura um banco de dados MySQL para você.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6.  **Execute as Migrações:**
+
+    ```bash
+    sail artisan migrate
+    ```
+
+7.  **Crie o Link Simbólico para o Storage:**
+
+    Este passo é **crucial** para que a aplicação possa salvar e acessar os documentos na pasta `storage/app/public`.
+
+    ```bash
+    sail artisan storage:link
+    ```
+
+8.  **Inicie o Servidor de Desenvolvimento:**
+
+    ```bash
+    sail artisan serve
+    ```
+
+    O projeto estará acessível em `http://localhost`.
+
+## Uso
+
+Após a instalação e configuração, você pode:
+
+1.  Acessar a URL do projeto no seu navegador.
+2.  Registrar um novo usuário ou fazer login com credenciais existentes.
+3.  Navegar pelas seções de "Produtos" e "Documentos" para gerenciar seus dados.
+
+---

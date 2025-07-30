@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Services\DocumentService;
 use App\Http\Requests\StoreUpdateDocumentRequest;
 
@@ -88,5 +89,19 @@ class DocumentController extends Controller
         $document = $this->documentService->destroyDocument($id);
 
         return redirect()->route('documentos.index');
+    }
+
+    /**
+     * Download the specified resource from storage.
+     */
+    public function download(string $id)
+    {
+        $document = $this->documentService->getDocumentById($id, Auth::id());
+
+        if (Storage::disk('public')->exists($document->file)) {
+            return Storage::disk('public')->download($document->file);
+        }
+
+        abort(404, 'File not found.');
     }
 }

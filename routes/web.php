@@ -14,6 +14,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/produtos', App\Http\Controllers\ProductController::class);
     Route::resource('/documentos', App\Http\Controllers\DocumentController::class);
+    Route::get('/documentos/download/{id}', [App\Http\Controllers\DocumentController::class, 'download'])->name('documentos.download');
 });
 
 

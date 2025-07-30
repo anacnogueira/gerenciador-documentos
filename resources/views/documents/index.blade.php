@@ -26,18 +26,22 @@
                 $document->id,
                 $document->name,
                 str_replace("documents/","",$document->file),
-                '<nobr><a href="'. route('documentos.edit', $document->id).'" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
-                <i class="fa fa-lg fa-fw fa-pen"></i></a>
-                <form action="'.route('documentos.destroy', $document->id) .'" method="POST" class="frm-delete" style="display: inline">
-                    <input type="hidden" name="_token" value="'.csrf_token().'">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir">
-                        <i class="fa fa-lg fa-fw fa-trash"></i>
-                    </button>
-                </form>
-                <a href="'.route('documentos.show', $document->id) .'" class="btn btn-xs btn-default text-teal mx-1 shadow" title="Detalhes">
-                    <i class="fa fa-lg fa-fw fa-eye"></i>
-                </a>
+                '<nobr>
+                    <a href="'. route('documentos.download', $document->id).'" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Download">
+                        <i class="fa fa-lg fa-fw fa-download"></i>
+                    </a>
+                    <a href="'. route('documentos.edit', $document->id).'" class="btn btn-xs btn-default text-primary mx-1 shadow" title="Editar">
+                    <i class="fa fa-lg fa-fw fa-pen"></i></a>
+                    <form action="'.route('documentos.destroy', $document->id) .'" method="POST" class="frm-delete" style="display: inline">
+                        <input type="hidden" name="_token" value="'.csrf_token().'">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-xs btn-default text-danger mx-1 shadow" title="Excluir">
+                            <i class="fa fa-lg fa-fw fa-trash"></i>
+                        </button>
+                    </form>
+                    <a href="'.route('documentos.show', $document->id) .'" class="btn btn-xs btn-default text-teal mx-1 shadow" title="Detalhes">
+                        <i class="fa fa-lg fa-fw fa-eye"></i>
+                    </a>
                 </nobr>',
             ];
         }

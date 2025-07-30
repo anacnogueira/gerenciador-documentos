@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Services\DocumentService;
 use App\Http\Requests\StoreUpdateDocumentRequest;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Response;
 
 class DocumentController extends Controller
 {
@@ -22,9 +20,7 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        $userId = Auth::id();
-
-        $documents = $this->documentService->getAllDocumentsByUser($userId);
+        $documents = $this->documentService->getAllDocumentsByUser(Auth::id());
 
         return view('documents.index', compact('documents'));
     }
@@ -57,7 +53,7 @@ class DocumentController extends Controller
      */
     public function show(string $id)
     {
-        $document = $this->documentService->getDocumentById($id);
+        $document = $this->documentService->getDocumentById($id, Auth::id());
 
         return view('documents.show', compact('document'));
     }
@@ -67,7 +63,7 @@ class DocumentController extends Controller
      */
     public function edit(string $id)
     {
-        $document = $this->documentService->getDocumentById($id);
+        $document = $this->documentService->getDocumentById($id, Auth::id());
 
         return view('documents.edit', compact('document'));
     }

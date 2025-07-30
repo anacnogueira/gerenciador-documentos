@@ -38,9 +38,11 @@ class DocumentRepository implements DocumentRepositoryInterface
      * @param int $id
      * @return object
      */
-    public function getDocumentById($id)
+    public function getDocumentById($id, $userId)
     {
-        return $this->entity->find($id);
+        return $this->entity
+            ->where('user_id', $userId)
+            ->find($id);
     }
 
     /**
@@ -58,8 +60,8 @@ class DocumentRepository implements DocumentRepositoryInterface
      * Delete a Document
      * @param object $Document
      */
-    public function destroyDocument(Document $socument)
+    public function destroyDocument(Document $document)
     {
-        return $socument->delete();
+        return $document->delete();
     }
 }

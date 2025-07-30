@@ -49,9 +49,9 @@ class DocumentService
      * @param int $id
      * @return object
     */
-    public function getDocumentById(int $id)
+    public function getDocumentById(int $id, int $userId)
     {
-        return $this->documentRepository->getDocumentById($id);
+        return $this->documentRepository->getDocumentById($id, $userId);
     }
 
     /**

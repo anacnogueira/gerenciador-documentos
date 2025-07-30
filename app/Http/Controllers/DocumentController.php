@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Services\DocumentService;
 use App\Http\Requests\StoreUpdateDocumentRequest;
@@ -21,7 +20,7 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        $documents = $this->documentService->getAllDocumentsByUser(Auth::id());
+        $documents = $this->documentService->getAllDocumentsByUser();
 
         return view('documents.index', compact('documents'));
     }
@@ -42,9 +41,9 @@ class DocumentController extends Controller
     public function store(StoreUpdateDocumentRequest $request)
     {
         $data = $request->all();
-        $data["user_id"] = Auth::id();
+        $ip = $request->ip();
 
-        $document = $this->documentService->makeDocument($data, $request->file("file"));
+        $document = $this->documentService->makeDocument($data, $request->file("file"), $ip);
 
         return redirect()->route('documentos.index');
     }
@@ -54,7 +53,7 @@ class DocumentController extends Controller
      */
     public function show(string $id)
     {
-        $document = $this->documentService->getDocumentById($id, Auth::id());
+        $document = $this->documentService->getDocumentById($id);
 
         return view('documents.show', compact('document'));
     }
@@ -64,7 +63,7 @@ class DocumentController extends Controller
      */
     public function edit(string $id)
     {
-        $document = $this->documentService->getDocumentById($id, Auth::id());
+        $document = $this->documentService->getDocumentById($id);
 
         return view('documents.edit', compact('document'));
     }
@@ -75,8 +74,9 @@ class DocumentController extends Controller
     public function update(StoreUpdateDocumentRequest $request, string $id)
     {
         $data = $request->all();
+        $ip = $request->ip();
 
-        $document = $this->documentService->updateDocument($id, $data, $request->file("file"));
+        $document = $this->documentService->updateDocument($id, $data, $request->file("file"), $ip);
 
         return redirect()->route('documentos.index');
     }
@@ -96,7 +96,7 @@ class DocumentController extends Controller
      */
     public function download(string $id)
     {
-        $document = $this->documentService->getDocumentById($id, Auth::id());
+        $document = $this->documentService->getDocumentById($id);
 
         if (Storage::disk('public')->exists($document->file)) {
             return Storage::disk('public')->download($document->file);

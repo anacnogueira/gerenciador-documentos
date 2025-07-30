@@ -81,6 +81,35 @@ Siga os passos abaixo para configurar e executar o projeto em sua máquina local
 
     O projeto estará acessível em `http://localhost`.
 
+## Configuração de Geolocalização (Opcional)
+
+Este projeto pode usar o endereço IP do usuário para determinar sua localização aproximada (país, cidade, etc.), utilizando o pacote `stevebauman/location` com a base de dados **MaxMind GeoLite2**.
+
+Para habilitar e configurar esta funcionalidade, siga os passos abaixo:
+
+1.  **Obtenha uma Chave de Licença MaxMind:**
+
+    -   Vá para o [site da MaxMind](https://www.maxmind.com/en/geolocations/geoip2-databases).
+    -   Crie uma conta gratuita.
+    -   Após o login, navegue até "My Account" -> "Manage License Keys" e gere uma nova chave de licença.
+    -   Adicione esta chave ao seu arquivo `.env`:
+
+        ```env
+        MAXMIND_LICENSE_KEY="SUA_CHAVE_DE_LICENCA_MAXMIND_AQUI"
+        ```
+
+2.  **Baixe o Banco de Dados GeoLite2:**
+
+    Este comando baixará o banco de dados necessário para a geolocalização por IP. É importante rodá-lo periodicamente para manter a base de dados atualizada.
+
+    ```bash
+    sail artisan location:update --driver=maxmind
+    ```
+
+    -   **Recomendação**: Considere agendar este comando no Laravel Scheduler (`app/Console/Kernel.php`) para que ele seja executado automaticamente, por exemplo, uma vez por mês, garantindo que os dados de localização estejam sempre atualizados.
+
+Com esta configuração, você poderá utilizar a funcionalidade de geolocalização no seu código Laravel.
+
 ## Uso
 
 Após a instalação e configuração, você pode:
